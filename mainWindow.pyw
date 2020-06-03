@@ -9,11 +9,17 @@ pygame.init()
 
 def begin_flyingFace(*args):
 	root.withdraw()
+	os.system('pythonw inst_ff.py')
+	root.deiconify()
+	root.withdraw()
 	os.system('pythonw flyingFace.py')
 	root.deiconify()
 
 
 def begin_playerGame(*args):
+	root.withdraw()
+	os.system('pythonw inst_pg.py')
+	root.deiconify()
 	root.withdraw()
 	os.system('pythonw playerGame.py')
 	root.deiconify()
