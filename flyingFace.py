@@ -46,8 +46,6 @@ def drawrec(p,img,speed,b,g,r):
 
         cv2.rectangle(img,(p[i][0],p[i][4]),(p[i][1],p[i][4]+20),(0,0,0),-1)
         cv2.rectangle(img,(p[i][0]+20,p[i][4]+20),(p[i][1]-20,640),(b,g,r),-1)
-        score='Score'+str(speed-4)
-        cv2.putText(img,score,(300,100),cv2.FONT_HERSHEY_COMPLEX,2,(0,0,0),2,cv2.LINE_AA)
 
     return img
 
@@ -67,6 +65,8 @@ b=random.randint(0,255)
 g=random.randint(0,255)
 r=random.randint(0,255)
 crash=False
+
+# NOTE - The score is a measure of time and not of number of bars crossed.
 
 cv2.waitKey(1000)
 while True:
@@ -110,8 +110,10 @@ while True:
         g=random.randint(0,255)
         r=random.randint(0,255)
     img=drawrec(p,img,speed,b,g,r)
+    score='Score = '+str(int(time_/50))
+    cv2.putText(img,score,(00,100),cv2.FONT_HERSHEY_COMPLEX,1,(0,0,0),2,cv2.LINE_AA)
     if crash==True:
-        cv2.putText(img,'Game Over. Press W to exit',(50,50),cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255),2,cv2.LINE_AA)
+        cv2.putText(img,'Game Over. Press W to exit',(00,50),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,0),2,cv2.LINE_AA)
         cv2.imshow('Flying Face',img)
         if cv2.waitKey(0) & 0xFF == ord('w'):
           cv2.destroyAllWindows()
